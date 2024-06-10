@@ -1,0 +1,10 @@
+.entryexit-row {
+    display:grid;
+    width:100%;
+    grid-template-columns: 30% 30% 30% 10%;
+    gap:8px;
+    align-items:center;
+    align-content: center;
+    
+    
+}

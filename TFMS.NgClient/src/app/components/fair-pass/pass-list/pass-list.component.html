@@ -1,0 +1,56 @@
+<mat-card class="table-card mat-elevation-z9">
+    <mat-card-header>
+        <mat-card-title>Exhibitor's pass</mat-card-title>
+        <mat-card-subtitle>Fair Pass List</mat-card-subtitle>
+
+        <span class="filler"></span>
+        <a mat-mini-fab [routerLink]="['/fair-pass-create']" [title]="'Create new Pass'"><mat-icon>add</mat-icon></a>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="exhibitorId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Exhibitor Name</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ getCompanyName(element.exhibitorId)}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="personName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Person Name</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.personName }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="validFrom">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Pass Valid From</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.validFrom |date:'yyyy-MM-dd' }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="validUntil">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Valid Expires In</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.validUntil |date:'yyyy-MM-dd' }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="exhibitorEntryExits">
+                <mat-header-cell *matHeaderCellDef>Enty and Exit</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="primary" aria-label="exhibitorEntryExits data"
+                        (click)="entryExitClick(element.exhibitorPassId, element.personName)">
+                        <mat-icon>view_list</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>actions</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <a color="primary" [routerLink]="['/fair-pass-edit', element.exhibitorPassId]"
+                        mat-icon-button><mat-icon>edit</mat-icon></a>
+                    <button (click)="delete(element)" color="warn" mat-icon-button><mat-icon>delete</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+            <mat-row *matRowDef="let element; columns: columns"></mat-row>
+
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[1,5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+
+    </mat-card-content>
+
+</mat-card>

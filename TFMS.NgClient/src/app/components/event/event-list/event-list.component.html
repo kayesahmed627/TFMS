@@ -1,0 +1,74 @@
+<mat-card class="table-card mat-elevation-z9">
+    <mat-card-header>
+        <mat-card-title>Events & Audience</mat-card-title>
+        <mat-card-subtitle>Event list</mat-card-subtitle>
+
+        <span class="filler"></span>
+        <a mat-mini-fab [routerLink]="['/event-create']" [title]="'Create new Event'"><mat-icon>add</mat-icon></a>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="venueId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Venue Name</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ getVenueName(element.venueId)}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="eventName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Event Name</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.eventName }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="eventDescription">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>EventDescription</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.eventDescription }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="eventDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>EventDate</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.eventDate |date:'yyyy-MM-dd' }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="startTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>StartTime</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.startTime }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="endTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>EndTime</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.endTime }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="speakerName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>SpeakerName</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.speakerName }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="speakerDetails">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>SpeakerDetails</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.speakerDetails }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="eventsReg">
+                <mat-header-cell *matHeaderCellDef>Audience</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="primary" aria-label="eventsReg data"
+                        (click)="eventregClick(element.eventId, element.eventName)">
+                        <mat-icon>view_list</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>actions</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <a color="primary" [routerLink]="['/event-edit', element.eventId]"
+                        mat-icon-button><mat-icon>edit</mat-icon></a>
+                    <button (click)="delete(element)" color="warn" mat-icon-button><mat-icon>delete</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+            <mat-row *matRowDef="let element; columns: columns"></mat-row>
+
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[1,5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+
+    </mat-card-content>
+
+</mat-card>
+

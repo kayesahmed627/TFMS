@@ -1,0 +1,10 @@
+.pavlion-row {
+    display:grid;
+    width:100%;
+    grid-template-columns: 18% 18% 18% 18% 18% 10%;
+    gap:8px;
+    align-items:center;
+    align-content: center;
+    
+    
+}

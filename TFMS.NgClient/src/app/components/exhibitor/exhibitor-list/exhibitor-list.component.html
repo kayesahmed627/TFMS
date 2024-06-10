@@ -1,0 +1,68 @@
+<div class="view-container">
+    <mat-card class="table-card mat-elevation-z9">
+      <mat-card-header>
+        <mat-card-title>Exhibitor List</mat-card-title>
+        <mat-card-subtitle>List of Exhibitor</mat-card-subtitle>
+  
+        <span class="filler"></span>
+        <a mat-mini-fab [routerLink]="['/exhibitor-create']" [title]="'Create new staff'"><mat-icon>add</mat-icon></a>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <mat-table [dataSource]="dataSource" matSort>
+  
+          <ng-container matColumnDef="logoUrl" style="width: 50px">
+            <mat-header-cell style="width: 50px"
+                             *matHeaderCellDef mat-sort-header>Logo</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <img src="{{ imagePath }}/{{ element.logoUrl }}"
+                   class="circle-image"
+                   style="width: 40px" />
+            </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="companyName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>company Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.companyName}}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="tradeLicence">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Trade Licence No.</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.tradeLicence}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="contactNumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Contact Numbe</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.contactNumber}}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="website">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Website</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.website}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.description}}</mat-cell>
+          </ng-container>
+    <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a color="primary" [routerLink]="['/exhibitor-edit', element.exhibitorId]" mat-icon-button ><mat-icon>edit</mat-icon></a>
+            <button (click)="delete(element)" color="warn" mat-icon-button ><mat-icon>delete</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+  
+          <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+          <mat-row *matRowDef="let element; columns: columns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+  
+  </mat-card-content>
+  </mat-card>
+  </div>
+  
+  

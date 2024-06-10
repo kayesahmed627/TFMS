@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Attendence data [{{data.staffName}}]</h2>
+<mat-dialog-content>
+    <mat-table [dataSource]="dataSource" matSort>
+      
+    <ng-container matColumnDef="attendenceDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Attendence Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.attendenceDate }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="startTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Start Time</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.startTime }}</mat-cell>
+    </ng-container>
+   
+    <ng-container matColumnDef="endTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>End Time</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.endTime }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+    <mat-row *matRowDef="let element; columns: columns"></mat-row>
+</mat-table>
+</mat-dialog-content>
+<mat-dialog-actions class="end">
+<button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+
+</mat-dialog-actions>

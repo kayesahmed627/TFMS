@@ -1,0 +1,59 @@
+<div class="view-container">
+    <mat-card class="medium-form-card-container mat-elevation-z9">
+      <mat-card-header>
+        <mat-card-title>Create new Sponsor</mat-card-title>
+        <mat-card-subtitle>Fill up the form</mat-card-subtitle>     
+        <span class="filler"></span>       
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="createForm" class="medium-form-container"  (ngSubmit)="save()">
+
+            <mat-form-field class="f-w" >          
+                <mat-label>Company Name</mat-label>
+                <input matInput type="text" formControlName="companyName" />
+                <mat-error *ngIf="f['companyName'].touched && f['companyName'].hasError('required')">Company Name is <strong>required</strong></mat-error>             
+              </mat-form-field>
+
+              <mat-form-field class="f-w" >             
+                <mat-label>Phone</mat-label>
+                <input matInput type="text" formControlName="phone" />
+                <mat-error *ngIf="f['phone'].touched && f['phone'].hasError('required')">Phone number is <strong>required</strong></mat-error>      
+              </mat-form-field>
+
+              <mat-form-field class="f-w" >             
+                <mat-label>Email</mat-label>
+                <input matInput type="text" formControlName="email" />
+                <mat-error *ngIf="f['email'].touched && f['email'].hasError('required')">Email Id is <strong>required</strong></mat-error>      
+              </mat-form-field>
+
+              <mat-form-field class="f-w" >             
+                <mat-label>Industry</mat-label>
+                <input matInput type="text" formControlName="industry" />
+                <mat-error *ngIf="f['industry'].touched && f['industry'].hasError('required')">Industry name is <strong>required</strong></mat-error>      
+              </mat-form-field>
+
+              <mat-form-field class="f-w" >             
+                <mat-label>City</mat-label>
+                <input matInput type="text" formControlName="city" />
+                <mat-error *ngIf="f['city'].touched && f['city'].hasError('required')">City name is <strong>required</strong></mat-error>      
+              </mat-form-field>
+
+              <mat-form-field class="f-w" >             
+                <mat-label>Website</mat-label>
+                <input matInput type="text" formControlName="website" />
+                <mat-error *ngIf="f['website'].touched && f['website'].hasError('required')">Website address is <strong>required</strong></mat-error>      
+              </mat-form-field>
+
+              <div class="f-w">
+                <button type="submit" [disabled]="createForm.invalid" mat-raised-button color="primary">Save</button>
+              </div>
+  
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button [routerLink]="['/sponsors']">Back to list</a>
+    </mat-card-actions>
+
+</mat-card>
+</div>

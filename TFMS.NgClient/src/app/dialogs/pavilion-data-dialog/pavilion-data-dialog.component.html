@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Pavilions data [{{data.categoryName}}]</h2>
+<mat-dialog-content>
+    <mat-table [dataSource]="dataSource" matSort>
+        
+        <ng-container matColumnDef="pavilionName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Pavilion Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.pavilionName }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="pavilionNumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Pavilion Number</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.pavilionNumber }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="size">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Size</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.size }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="sqFoot">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>sqFoot</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.sqFoot }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="rent">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Rent</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.rent }}</mat-cell>
+        </ng-container>
+
+
+
+        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+        <mat-row *matRowDef="let element; columns: columns"></mat-row>
+    </mat-table>
+</mat-dialog-content>
+<mat-dialog-actions class="end">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+
+</mat-dialog-actions>

@@ -1,0 +1,66 @@
+<div class="view-container">
+    <!--<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>-->
+    <mat-card class="table-card mat-elevation-z9">
+      <mat-card-header>
+        <mat-card-title>Organizer List</mat-card-title>
+        <mat-card-subtitle>List of Organizer</mat-card-subtitle>
+  
+        <span class="filler"></span>
+        <a mat-mini-fab [routerLink]="['/organizer-create']" [title]="'Create new organizer'"><mat-icon>add</mat-icon></a>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-table [dataSource]="dataSource" matSort>
+
+
+          <ng-container matColumnDef="organizerName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Organizer Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.organizerName}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="organizerEmail">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Organizer Email</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.organizerEmail}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="organizerPhone">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Organizer Phone</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.organizerPhone}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="webSiteUrl">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Website Url</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.webSiteUrl}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sortDescription">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.sortDescription}}</mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="fair">
+            <mat-header-cell *matHeaderCellDef>Fairs</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary" aria-label="Fairs data" (click)="organizerClick(element.organizerId, element.organizerName)">
+                <mat-icon>view_list</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <a color="primary" [routerLink]="['/organizer-edit', element.organizerId]" mat-icon-button><mat-icon>edit</mat-icon></a>
+              <button (click)="delete(element)" color="warn" mat-icon-button><mat-icon>delete</mat-icon></button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+          <mat-row *matRowDef="let element; columns: columns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+  
+  </mat-card-content>
+ </mat-card>
+ </div>  

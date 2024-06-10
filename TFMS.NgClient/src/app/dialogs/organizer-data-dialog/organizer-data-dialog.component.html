@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Fair data [{{data.organizerName}}]</h2>
+<mat-dialog-content>
+    <mat-table [dataSource]="dataSource" matSort>
+      
+    <ng-container matColumnDef="fairName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Fair Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.fairName }}</mat-cell>
+    </ng-container>
+   
+    <ng-container matColumnDef="startDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.startDate|date:'yyyy-MM-dd' }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="endDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>End Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.endDate|date:'yyyy-MM-dd'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.location }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="registrationDeadLine">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration Deadline</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.registrationDeadLine|date:'yyyy-MM-dd' }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+    <mat-row *matRowDef="let element; columns: columns"></mat-row>
+</mat-table>
+</mat-dialog-content>
+<mat-dialog-actions class="end">
+<button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+
+</mat-dialog-actions>

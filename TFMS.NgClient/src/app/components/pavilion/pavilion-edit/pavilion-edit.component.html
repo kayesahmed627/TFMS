@@ -1,0 +1,88 @@
+<div class="view-container">
+    <mat-card class="medium-form-card-container mat-elevation-z9">
+      <mat-card-header>
+        <mat-card-title>Edit pavilion</mat-card-title>
+        <mat-card-subtitle>Fill up the form</mat-card-subtitle>     
+        <span class="filler"></span>    
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="pavlionForm" class="medium-form-container"  (ngSubmit)="save()">
+           
+          <mat-form-field class="f-w" >
+                <mat-label>Category Name</mat-label>
+                <input matInput type="text" formControlName="categoryName" />
+                <mat-error *ngIf="f['categoryName'].touched && f['categoryName'].hasError('required')">Category Name is <strong>required</strong></mat-error>
+               
+              </mat-form-field>
+              <mat-form-field class="f-w" >
+                <mat-label>Pavilion Type</mat-label>
+                <mat-select   formControlName="pavilionType">
+                    <mat-option *ngFor="let b of typeOptions" [value]="b.value">{{b.label}}</mat-option>
+
+                </mat-select>
+                <mat-error *ngIf="f['pavilionType'].touched && f['pavilionType'].hasError('required')">Pavilion Type is <strong>required</strong></mat-error>
+               
+              </mat-form-field>
+              <mat-form-field class="f-w" >
+                <mat-label>Fare/Sq. Foot</mat-label>
+                <input matInput type="text" formControlName="farePerSquareFeet" />
+                <mat-error *ngIf="f['farePerSquareFeet'].touched && f['farePerSquareFeet'].hasError('required')">Fare  is <strong>required</strong></mat-error>
+               
+              </mat-form-field>
+              <mat-form-field class="f-w" >
+                <mat-label>Description</mat-label>
+                <input matInput type="text" formControlName="description" />
+                <mat-error *ngIf="f['description'].touched && f['description'].hasError('required')">Description is <strong>required</strong></mat-error>
+               
+              </mat-form-field>
+              <div style="display: flex; justify-content: flex-end;">
+                <button type="button" mat-icon-button (click)="addPavilion()" ><mat-icon>add</mat-icon></button>
+              </div>
+              <ng-container formArrayName="pavilions">
+                <ng-container *ngFor="let p of pavilions.controls; let i = index">
+                    <div [formGroupName]="i" class="pavlion-row">
+                        <mat-form-field class="f-w" >
+                            <mat-label>Pavilion Name </mat-label>
+                            <input matInput
+                                   formControlName="pavilionName">
+                            <mat-error *ngIf="pavilions.controls[i].get('pavilionName')?.hasError('required')">Property value is <strong>required</strong></mat-error>
+                          </mat-form-field>
+                          <mat-form-field class="f-w" >
+                            <mat-label>Pavilion Number </mat-label>
+                            <input matInput
+                                   formControlName="pavilionNumber">
+                            <mat-error *ngIf="pavilions.controls[i].get('pavilionNumber')?.hasError('required')">Property value is <strong>required</strong></mat-error>
+                          </mat-form-field>
+                          <mat-form-field class="f-w" >
+                            <mat-label>Size </mat-label>
+                            <input matInput
+                                   formControlName="size">
+                            <mat-error *ngIf="pavilions.controls[i].get('size')?.hasError('required')">Size is <strong>required</strong></mat-error>
+                          </mat-form-field>
+                          <mat-form-field class="f-w" >
+                            <mat-label>Sq. Feet </mat-label>
+                            <input matInput
+                                   formControlName="sqFoot">
+                            <mat-error *ngIf="pavilions.controls[i].get('sqFoot')?.hasError('required')">Size is <strong>required</strong></mat-error>
+                          </mat-form-field>
+                          <mat-form-field class="f-w" >
+                            <mat-label>Rent </mat-label>
+                            <input matInput
+                                   formControlName="rent">
+                            <mat-error *ngIf="pavilions.controls[i].get('rent')?.hasError('required')">Size is <strong>required</strong></mat-error>
+                          </mat-form-field>
+                          <button mat-icon-button style="margin-bottom: 12px;" (click)="removePavilion(i)"><mat-icon>delete</mat-icon></button>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <div class="f-w">
+              <button type="submit" [disabled]="pavlionForm.invalid" mat-raised-button color="primary">Update</button>
+            </div>
+        </form>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button [routerLink]="['/pavilions']">Back to list</a>
+        </mat-card-actions>
+    </mat-card>
+</div>  
